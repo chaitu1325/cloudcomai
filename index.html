@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudComAI — Secure Chats. Smart Features. Total Control.</title>
+<meta name="description" content="CloudComAI is a privacy-first messaging platform with end-to-end encryption, locked chats, screenshot alerts, an approval system for shared media, and built-in AI tools.">
+<meta property="og:title" content="CloudComAI — Secure Chats. Smart Features. Total Control.">
+<meta property="og:description" content="Your conversations. Your privacy. Your control.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect rx=%2224%22 width=%22100%22 height=%22100%22 fill=%22%232F6FED%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>C</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="container nav-row">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 5.6 2 10c0 2.4 1.3 4.6 3.4 6.1L4 22l5.6-2.2c.8.1 1.6.2 2.4.2 5.5 0 10-3.6 10-8s-4.5-8-10-8Z" fill="white"/></svg>
+      </span>
+      CloudComAI
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#ai">AI &amp; Security</a>
+      <a href="#why">Why CloudComAI</a>
+      <a href="#download">Download</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <div id="loggedOutActions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log in</a>
+        <a href="login.html?tab=register" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+      <div id="loggedInActions" class="hidden" style="display:flex;gap:10px;align-items:center;">
+        <span class="account-chip"><span class="account-avatar" id="avatarInitial">U</span><span id="accountName">Account</span></span>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn" type="button">Log out</button>
+      </div>
+      <button class="burger" id="burgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">● PRIVACY-FIRST MESSAGING</span>
+      <h1>Secure Chats.<br>Smart Features.<br><span class="accent">Total Control.</span></h1>
+      <p class="sub">Your conversations. Your privacy. Your control. CloudComAI keeps every message encrypted, every share approved, and every chat exactly as private as you want it.</p>
+      <div class="hero-ctas">
+        <a href="login.html?tab=register" class="btn btn-primary">Get Started</a>
+        <a href="#download" class="btn btn-ghost">Download App</a>
+        <a href="#contact" class="btn btn-ghost">Contact Us</a>
+      </div>
+      <div class="trust-row">
+        <span class="t-item">🔒 End-to-End Encrypted</span>
+        <span class="t-item">🌍 Available worldwide</span>
+        <span class="t-item">✅ GDPR ready</span>
+      </div>
+    </div>
+    <div class="hero-stage" aria-hidden="true">
+      <div class="stage-globe"></div>
+      <div class="stage-card c1">🔐 Encrypted</div>
+      <div class="stage-card c2">👀 Read receipts</div>
+      <div class="stage-card c3">🌐 Global chat</div>
+      <div class="stage-phone">
+        <div class="screen">
+          <div class="lock-pill">🔒 End-to-end encrypted</div>
+          <div class="bubble in">Hey! Are we still on for the call?</div>
+          <div class="bubble out">Yes, joining in 5 🙌</div>
+          <div class="bubble in">Perfect, see you soon.</div>
+          <div class="bubble out">Sure, see you! ✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORYBOARD / PRODUCT TOUR ============ -->
+<section class="storyboard-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" style="color:var(--blue-400);">PRODUCT TOUR</span>
+      <h2>See CloudComAI in action</h2>
+      <p>One storyboard, twenty moments — from your first hello to a fully encrypted, AI-powered conversation.</p>
+    </div>
+    <div class="storyboard-frame">
+      <img src="assets/storyboard.png" alt="CloudComAI storyboard showing welcome screen, private messaging, encryption, public chat rooms, voice messages, privacy controls, screenshot alerts, AI assistant, translation, and multi-device access.">
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FEATURES</span>
+      <h2>Everything a modern chat needs — none of the compromises</h2>
+      <p>Seven core features designed around one idea: you decide what happens to your conversations.</p>
+    </div>
+
+    <div class="feature-grid">
+
+      <!-- 1 Private Chatting -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><circle cx="18" cy="20" r="9" fill="#2F6FED"/><circle cx="16" cy="18" r="1.6" fill="#fff"/><circle cx="21" cy="18" r="1.6" fill="#fff"/><path d="M14 23c1.4 1.6 5.6 1.6 7 0" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><path d="M28 14h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-3l-3 4v-4h-4a3 3 0 0 1-3-3v-2" stroke="#1B4FD1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Private Chatting</h3>
+        <p class="desc">One-to-one messages protected end-to-end, from your phone to theirs and nowhere else.</p>
+        <div class="feature-tags">
+          <span>End-to-End Encryption</span><span>Read Receipts</span><span>Typing Indicator</span><span>Online Status</span><span>Emoji Reactions</span>
+        </div>
+      </div>
+
+      <!-- 2 Public Chat Rooms -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="14" stroke="#1B4FD1" stroke-width="2.4"/><ellipse cx="24" cy="24" rx="14" ry="6" stroke="#2F6FED" stroke-width="1.8"/><path d="M24 10v28M11 17h26M11 31h26" stroke="#2F6FED" stroke-width="1.6"/><circle cx="24" cy="24" r="2.4" fill="#22C7A9"/></svg>
+        </div>
+        <h3>Public Chat Rooms</h3>
+        <p class="desc">Join open communities around the topics you love and meet people from anywhere in the world.</p>
+        <div class="feature-tags">
+          <span>Public Rooms</span><span>Interest Groups</span><span>Community Discussions</span><span>Global Users</span><span>Moderated</span>
+        </div>
+      </div>
+
+      <!-- 3 Voice Messages -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="19" y="8" width="10" height="18" rx="5" fill="#2F6FED"/><path d="M13 22c0 6 4.9 11 11 11s11-5 11-11" stroke="#1B4FD1" stroke-width="2.4" stroke-linecap="round"/><path d="M24 33v7" stroke="#1B4FD1" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Voice Messages</h3>
+        <p class="desc">Say it out loud. Quick voice notes up to 30 seconds, with full playback control.</p>
+        <div class="demo-box">
+          <div class="waveform" aria-hidden="true">
+            <span style="animation-delay:.0s;height:40%"></span><span style="animation-delay:.1s;height:70%"></span><span style="animation-delay:.2s;height:30%"></span><span style="animation-delay:.3s;height:90%"></span><span style="animation-delay:.4s;height:50%"></span><span style="animation-delay:.5s;height:65%"></span><span style="animation-delay:.6s;height:35%"></span><span style="animation-delay:.7s;height:80%"></span>
+          </div>
+          <div class="feature-tags"><span>▶ Play</span><span>⏸ Pause</span><span>🗑 Delete</span><span>↪ Forward</span><span>Max 30s</span></div>
+        </div>
+      </div>
+
+      <!-- 4 Locked Chats -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="12" y="21" width="24" height="17" rx="4" fill="#2F6FED"/><path d="M17 21v-5a7 7 0 0 1 14 0v5" stroke="#1B4FD1" stroke-width="2.6" stroke-linecap="round"/><circle cx="24" cy="29" r="2.4" fill="#fff"/></svg>
+        </div>
+        <h3>Locked Chats</h3>
+        <p class="desc">Hide sensitive conversations behind another layer of protection, only for your eyes.</p>
+        <div class="feature-tags">
+          <span>Fingerprint</span><span>Face ID</span><span>PIN Lock</span><span>Hidden Chats</span><span>Auto Lock</span>
+        </div>
+      </div>
+
+      <!-- 5 User Safety -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><path d="M24 6 8 12v10c0 11 7 17.5 16 20 9-2.5 16-9 16-20V12L24 6Z" fill="#2F6FED"/><path d="M17 24l5 5 9-10" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>User Safety</h3>
+        <p class="desc">AI keeps watch for spam and abuse, and puts reporting and blocking one tap away.</p>
+        <div class="feature-tags">
+          <span>AI Spam Detection</span><span>Report User</span><span>Block User</span><span>Content Moderation</span><span>Privacy Controls</span>
+        </div>
+      </div>
+
+      <!-- 6 Screenshot Security -->
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="7" y="14" width="34" height="24" rx="4" stroke="#1B4FD1" stroke-width="2.4"/><circle cx="24" cy="26" r="6.5" stroke="#2F6FED" stroke-width="2.4"/><path d="M18 14l2.4-4h7.2l2.4 4" stroke="#1B4FD1" stroke-width="2.4" stroke-linejoin="round"/><path d="M4 4l40 40" stroke="#E5484D" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Screenshot Security</h3>
+        <p class="desc">If someone tries to capture a screen, the sender is notified right away.</p>
+        <div class="demo-box">
+          <div class="screenshot-alert">🚨 Screenshot detected — sender notified</div>
+        </div>
+      </div>
+
+      <!-- 7 Approval Required -->
+      <div class="feature-card wide">
+        <div class="feature-icon">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none"><rect x="9" y="8" width="30" height="32" rx="5" fill="#2F6FED"/><path d="M17 20h14M17 26h14M17 32h8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Approval Required</h3>
+        <p class="desc"><strong>A CloudComAI original.</strong> Before an image is saved, a file is downloaded, a screenshot is taken (where technically possible), or media is forwarded — the other person is asked first.</p>
+        <div class="demo-box">
+          <p style="margin:0 0 6px;font-weight:600;font-size:13.5px;">Save this image?</p>
+          <p style="margin:0;font-size:12.5px;color:var(--ink-soft);">Request from Priya</p>
+          <div class="approval-buttons">
+            <button class="btn-deny" type="button">Deny</button>
+            <button class="btn-approve" type="button">Approve</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ AI + SECURITY ============ -->
+<section class="band" id="ai">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">SMART AI FEATURES</span>
+      <h2>An assistant built into every conversation</h2>
+      <p>CloudComAI's AI helps you chat faster, understand more, and stay safer — automatically.</p>
+    </div>
+    <div class="pill-grid" style="margin-bottom:60px;">
+      <div class="pill-card"><div class="pill-icon">🤖</div><div><h4>AI Chat Assistant</h4><p>Ask questions or get quick help without leaving the conversation.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🌐</div><div><h4>AI Translation</h4><p>Read and write in your language automatically, in real time.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">💬</div><div><h4>AI Message Suggestions</h4><p>Smart reply options that match the tone of the conversation.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🚫</div><div><h4>AI Spam Filter</h4><p>Unwanted messages get caught before they reach you.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🛡️</div><div><h4>AI Moderation</h4><p>Public rooms are monitored automatically to keep discussions respectful.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🔍</div><div><h4>AI Search</h4><p>Find any message, file, or link across every chat in seconds.</p></div></div>
+    </div>
+
+    <div class="section-head">
+      <span class="eyebrow">SECURITY</span>
+      <h2>Built on a security-first foundation</h2>
+      <p>Every layer of CloudComAI is designed to keep your data yours.</p>
+    </div>
+    <div class="pill-grid">
+      <div class="pill-card"><div class="pill-icon">🔐</div><div><h4>End-to-End Encryption</h4><p>Only the people in the chat can read what's sent.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">☁️</div><div><h4>Secure Cloud Backup</h4><p>Encrypted backups so you never lose a conversation.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🔒</div><div><h4>SSL Encryption</h4><p>Every connection to CloudComAI is encrypted in transit.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">📄</div><div><h4>GDPR Ready</h4><p>Built to respect data protection rules from day one.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">🙈</div><div><h4>Privacy First</h4><p>Minimal data collection, maximum control for you.</p></div></div>
+      <div class="pill-card"><div class="pill-icon">📱</div><div><h4>Device Verification</h4><p>Approve new devices before they can access your account.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CLOUDCOMAI ============ -->
+<section class="features" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">WHY CLOUDCOMAI</span>
+      <h2>How CloudComAI compares</h2>
+      <p>A quick, honest look at the features that set CloudComAI apart.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th>Feature</th><th class="brand">CloudComAI</th><th>WhatsApp</th><th>Telegram</th><th>Signal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>End-to-end encryption</td><td class="yes">✔</td><td class="yes">✔</td><td class="no">Partial</td><td class="yes">✔</td></tr>
+          <tr><td>Approval system for shares</td><td class="yes">✔</td><td class="no">✘</td><td class="no">✘</td><td class="no">✘</td></tr>
+          <tr><td>Screenshot alerts</td><td class="yes">✔</td><td class="no">✘</td><td class="no">✘</td><td class="no">✘</td></tr>
+          <tr><td>Locked / hidden chats</td><td class="yes">✔</td><td class="no">✘</td><td class="no">✘</td><td class="no">✘</td></tr>
+          <tr><td>Built-in AI safety tools</td><td class="yes">✔</td><td class="no">✘</td><td class="no">✘</td><td class="no">✘</td></tr>
+          <tr><td>Community controls</td><td class="yes">✔</td><td class="no">Limited</td><td class="yes">✔</td><td class="no">✘</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENSHOTS / MOCKUPS ============ -->
+<section class="band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">A LOOK INSIDE</span>
+      <h2>Simple screens, powerful controls</h2>
+      <p>A preview of what you'll see inside the app.</p>
+    </div>
+    <div class="mock-strip">
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div class="lock-pill">🔒 Private chat</div>
+          <div class="bubble in">Hi! How are you?</div>
+          <div class="bubble out">Doing great 😄</div>
+        </div></div>
+        <p class="mock-label">Private Chat</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div class="lock-pill" style="color:var(--blue-600);">👥 Design Team</div>
+          <div class="bubble in">New mockups are up</div>
+          <div class="bubble in">Looks great!</div>
+          <div class="bubble out">Thanks team 🙌</div>
+        </div></div>
+        <p class="mock-label">Group Chat</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div class="lock-pill">🎙 Voice note</div>
+          <div class="waveform"><span style="height:40%"></span><span style="height:80%"></span><span style="height:30%"></span><span style="height:70%"></span><span style="height:50%"></span></div>
+          <p style="font-size:12px;color:var(--ink-soft);text-align:center;">0:14</p>
+        </div></div>
+        <p class="mock-label">Voice Message</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div class="lock-pill">🔒 Locked chats</div>
+          <div style="text-align:center;margin-top:40px;font-size:34px;">🔐</div>
+          <p style="text-align:center;font-size:12.5px;color:var(--ink-soft);">Face ID required</p>
+        </div></div>
+        <p class="mock-label">Locked Chat</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div style="text-align:center;"><div class="avatar-circle" style="width:60px;height:60px;font-size:18px;margin-bottom:8px;">AJ</div></div>
+          <p style="text-align:center;font-weight:600;font-size:13px;margin:0;">Aisha J.</p>
+          <p style="text-align:center;font-size:11.5px;color:var(--ink-soft);">Online</p>
+        </div></div>
+        <p class="mock-label">Profile</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <div class="lock-pill" style="color:var(--blue-600);">🌍 Travel World</div>
+          <div class="bubble in">Anyone been to Kyoto?</div>
+          <div class="bubble in">Yes! Loved it 🍂</div>
+        </div></div>
+        <p class="mock-label">Public Chat</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <p style="font-weight:600;font-size:13px;">Settings</p>
+          <p style="font-size:12px;color:var(--ink-soft);">🔔 Notifications</p>
+          <p style="font-size:12px;color:var(--ink-soft);">🔒 Privacy &amp; Security</p>
+          <p style="font-size:12px;color:var(--ink-soft);">🗂 Storage</p>
+        </div></div>
+        <p class="mock-label">Settings</p>
+      </div>
+      <div>
+        <div class="mock-phone"><div class="screen">
+          <p style="font-weight:600;font-size:13px;">Save Image?</p>
+          <p style="font-size:11.5px;color:var(--ink-soft);">Request from John Doe</p>
+          <div class="approval-buttons"><button class="btn-deny">Deny</button><button class="btn-approve">Approve</button></div>
+        </div></div>
+        <p class="mock-label">Approval Request</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD ============ -->
+<section id="download" style="padding:60px 0;">
+  <div class="container">
+    <div class="download-section">
+      <div class="download-inner">
+        <span class="eyebrow" style="color:#DDEBFF;">GET THE APP</span>
+        <h2>Take CloudComAI everywhere</h2>
+        <p>Available on Android, iPhone, the web, and desktop — always in sync, always encrypted.</p>
+        <div class="download-btns">
+          <a href="#" class="btn btn-outline">▶ Google Play</a>
+          <a href="#" class="btn btn-outline"> Apple App Store</a>
+          <a href="#" class="btn btn-outline">🌐 Web Version</a>
+          <a href="#" class="btn btn-outline">💻 Desktop Version</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="features" id="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">ABOUT US</span>
+      <h2 style="margin:10px 0 18px;">Communication that puts you back in control</h2>
+      <p>CloudComAI is a privacy-first communication platform designed for individuals, businesses, families, and communities.</p>
+      <p>Our mission is to provide secure communication while giving users complete control over their conversations.</p>
+      <div class="stat-row">
+        <div><span>256-bit</span><small>Encryption standard</small></div>
+        <div><span>24/7</span><small>Security monitoring</small></div>
+        <div><span>100%</span><small>Approval-based sharing</small></div>
+      </div>
+    </div>
+    <div class="orbit-art" aria-hidden="true">
+      <svg viewBox="0 0 320 320" width="100%" height="100%">
+        <circle cx="160" cy="160" r="120" fill="none" stroke="#C6DBFF" stroke-width="2" stroke-dasharray="4 8"/>
+        <circle cx="160" cy="160" r="80" fill="#EEF4FF"/>
+        <circle cx="160" cy="160" r="46" fill="#2F6FED"/>
+        <path d="M148 160a12 12 0 1 1 24 0 12 8 0 0 1-24 0" fill="#fff"/>
+        <circle cx="160" cy="40" r="16" fill="#22C7A9"/>
+        <circle cx="280" cy="160" r="14" fill="#1B4FD1"/>
+        <circle cx="160" cy="280" r="16" fill="#F5A524"/>
+        <circle cx="40" cy="160" r="14" fill="#6FA8FF"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">MEET OUR TEAM</span>
+      <h2>The people behind CloudComAI</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar-circle">SRK</div>
+        <h4>SRK</h4>
+        <p class="role">Founder &amp; Product Strategy</p>
+        <ul>
+          <li>Product Vision</li>
+          <li>Business Strategy</li>
+          <li>Platform Innovation</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="avatar-circle">KCK</div>
+        <h4>KCK</h4>
+        <p class="role">Co-Founder &amp; Technology Lead</p>
+        <ul>
+          <li>Software Development</li>
+          <li>Platform Architecture</li>
+          <li>Security Engineering</li>
+          <li>AI Integration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="features" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">CONTACT</span>
+      <h2>We'd love to hear from you</h2>
+      <p>Questions, feedback, or partnership ideas — send us a message.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="form-card" id="contactForm">
+        <div class="form-row">
+          <div class="field"><label for="cName">Name</label><input id="cName" type="text" required placeholder="Your full name"></div>
+          <div class="field"><label for="cEmail">Email</label><input id="cEmail" type="email" required placeholder="you@example.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="cCountry">Country</label>
+            <select id="cCountry">
+              <option>India</option><option>United States</option><option>United Kingdom</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field"><label for="cSubject">Subject</label><input id="cSubject" type="text" placeholder="How can we help?"></div>
+        </div>
+        <div class="field" style="margin-bottom:18px;">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" rows="5" placeholder="Write your message..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        <p id="formNote" style="font-size:13px;color:var(--mint);margin-top:12px;display:none;">✔ Thanks! We'll get back to you soon.</p>
+      </form>
+      <div class="contact-side">
+        <div class="map-card">🗺 Google Map placeholder</div>
+        <div style="margin-top:24px;">
+          <div class="info-item">✉️ <div><strong>Support Email</strong><br><a href="mailto:support@cloudcomai.com">support@cloudcomai.com</a></div></div>
+          <div class="info-item">📍 <div><strong>Head Office</strong><br>Available on request</div></div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="X / Twitter">X</a>
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo" style="color:#fff;"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 2 5.6 2 10c0 2.4 1.3 4.6 3.4 6.1L4 22l5.6-2.2c.8.1 1.6.2 2.4.2 5.5 0 10-3.6 10-8s-4.5-8-10-8Z" fill="white"/></svg></span>CloudComAI</a>
+        <p style="font-size:13px;margin-top:14px;max-width:260px;">Secure chats. Smart features. Total control.</p>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul>
+        <li><a href="#about">About</a></li><li><a href="#features">Features</a></li><li><a href="legal/careers.html">Careers</a></li><li><a href="legal/blog.html">Blog</a></li><li><a href="#contact">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul>
+        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li><li><a href="legal/terms.html">Terms &amp; Conditions</a></li><li><a href="legal/cookie-policy.html">Cookies</a></li><li><a href="legal/acceptable-use.html">Acceptable Use</a></li><li><a href="legal/refund-policy.html">Refund Policy</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Trust</h5><ul>
+        <li><a href="legal/community-guidelines.html">Community Guidelines</a></li><li><a href="legal/gdpr.html">GDPR Compliance</a></li><li><a href="legal/data-protection.html">Data Protection</a></li><li><a href="legal/copyright-policy.html">Copyright Policy</a></li>
+      </ul></div>
+      <div class="footer-col"><h5>Support</h5><ul>
+        <li><a href="legal/faq.html">FAQ</a></li><li><a href="login.html">Login</a></li><li><a href="login.html?tab=register">Register</a></li><li><a href="mailto:support@cloudcomai.com">support@cloudcomai.com</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CloudComAI. All Rights Reserved.</span>
+      <span>www.cloudcomai.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
