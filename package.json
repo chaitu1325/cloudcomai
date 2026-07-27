@@ -1,0 +1,7 @@
+{
+  "name": "html-godaddy-deploy",
+  "type": "module",
+  "devDependencies": {
+    "basic-ftp": "^5.0.5"
+  }
+}
