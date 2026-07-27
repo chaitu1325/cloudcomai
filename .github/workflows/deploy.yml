@@ -3,7 +3,7 @@ name: HTML Deploy to GoDaddy
 on:
   push:
     branches:
-      - main # Change this if your production branch is named master
+      - main 
 
 jobs:
   backup-and-deploy:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2 # Upgraded to resolve Node 20 warning
 
       - name: Set up Node.js (For Backup Script)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.2.0 # Upgraded to resolve Node 20 warning
         with:
-          node-version: 18
+          node-version: 24 # Switched to Node 24 to match runner native runtime
 
       - name: Install Backup Tool Dependencies
         run: npm install
@@ -34,9 +34,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./ # Targets the root folder where your index.html is located
+          local-dir: ./ 
           server-dir: /public_html/
-          dangerous-clean-slate: true # Wipes out old GoDaddy index.html versions safely now that backup is stored
+          dangerous-clean-html: true # FIXED: Changed from dangerous-clean-slate
           exclude: |
             .git/**
             .github/**
