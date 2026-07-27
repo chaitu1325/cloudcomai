@@ -1,0 +1,46 @@
+name: HTML Deploy to GoDaddy
+
+on:
+  push:
+    branches:
+      - main # Change this if your production branch is named master
+
+jobs:
+  backup-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (For Backup Script)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Backup Tool Dependencies
+        run: npm install
+
+      - name: Run Safe Website Backup
+        run: node backup.js
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+
+      - name: Sync HTML Files to GoDaddy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./ # Targets the root folder where your index.html is located
+          server-dir: /public_html/
+          dangerous-clean-slate: true # Wipes out old GoDaddy index.html versions safely now that backup is stored
+          exclude: |
+            .git/**
+            .github/**
+            node_modules/**
+            package.json
+            package-lock.json
+            backup.js
