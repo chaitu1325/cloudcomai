@@ -1,10 +1,38 @@
 import ftp from 'basic-ftp';
 import fs from 'fs';
+import archiver from 'archiver';
+
+function zipDeploymentFiles(outputPath) {
+    return new Promise((resolve, reject) => {
+        const output = fs.createWriteStream(outputPath);
+        const archive = archiver('zip', { zlib: { level: 9 } });
+
+        output.on('close', () => resolve());
+        archive.on('error', (err) => reject(err));
+        archive.pipe(output);
+
+        // Explicitly include only your web files
+        archive.file('index.html', { name: 'index.html' });
+        if (fs.existsSync('assets')) archive.directory('assets/', 'assets');
+        if (fs.existsSync('css')) archive.directory('css/', 'css');
+        if (fs.existsSync('js')) archive.directory('js/', 'js');
+        if (fs.existsSync('legal')) archive.directory('legal/', 'legal');
+
+        archive.finalize();
+    });
+}
 
 async function runBackup() {
     const client = new ftp.Client();
     client.ftp.verbose = true;
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const zipName = `html-backup-${timestamp}.zip`;
+    const localZipPath = `./${zipName}`;
+
     try {
+        console.log("Compressing production files into a single ZIP archive...");
+        await zipDeploymentFiles(localZipPath);
+
         await client.access({
             host: process.env.FTP_SERVER,
             user: process.env.FTP_USERNAME,
@@ -12,37 +40,19 @@ async function runBackup() {
             secure: false
         });
 
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const backupDir = `/backups/html-backup-${timestamp}`;
+        console.log("Creating backup directory...");
+        await client.ensureDir("/backups");
 
-        console.log(`Creating backup folder: ${backupDir}`);
-        await client.ensureDir(backupDir);
+        console.log(`Uploading compressed backup (${zipName}) to GoDaddy vault...`);
+        // Uploads a single file instantly instead of looping through thousands
+        await client.uploadFrom(localZipPath, `/backups/${zipName}`);
 
-        // 1. Create a clean temporary local folder containing only deployment files
-        const stagingDir = "./deploy-staging";
-        if (!fs.existsSync(stagingDir)) fs.mkdirSync(stagingDir);
-
-        // Define files and folders to deploy matching your repository structure
-        const deployItems = ['index.html', 'assets', 'css', 'js', 'legal'];
-        
-        for (const item of deployItems) {
-            if (fs.existsSync(item)) {
-                fs.cpSync(item, `${stagingDir}/${item}`, { recursive: true });
-            }
-        }
-
-        // 2. Upload only these production deployment files to the GoDaddy backup vault
-        console.log("Uploading deployment files safely to backup vault...");
-        await client.uploadFromDir(stagingDir, backupDir);
-
-        // 3. Clean up the temporary staging directory on the GitHub runner
-        fs.rmSync(stagingDir, { recursive: true, force: true });
-
-        console.log("Backup completed successfully!");
+        console.log("Backup completed successfully in seconds!");
     } catch (err) {
-        console.error("Backup failed! Halting pipeline to protect live site.", err);
+        console.error("Backup failed!", err);
         process.exit(1); 
     } finally {
+        if (fs.existsSync(localZipPath)) fs.unlinkSync(localZipPath);
         client.close();
     }
 }
