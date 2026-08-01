@@ -1,4 +1,5 @@
 import ftp from 'basic-ftp';
+import fs from 'fs';
 
 async function runBackup() {
     const client = new ftp.Client();
@@ -17,11 +18,25 @@ async function runBackup() {
         console.log(`Creating backup folder: ${backupDir}`);
         await client.ensureDir(backupDir);
 
-        console.log("Downloading current GoDaddy public_html contents...");
-        await client.downloadToDir("./live-site-backup", "/public_html");
+        // 1. Create a clean temporary local folder containing only deployment files
+        const stagingDir = "./deploy-staging";
+        if (!fs.existsSync(stagingDir)) fs.mkdirSync(stagingDir);
 
-        console.log("Uploading files safely to backup vault...");
-        await client.uploadFromDir("./live-site-backup", backupDir);
+        // Define files and folders to deploy matching your repository structure
+        const deployItems = ['index.html', 'assets', 'css', 'js', 'legal'];
+        
+        for (const item of deployItems) {
+            if (fs.existsSync(item)) {
+                fs.cpSync(item, `${stagingDir}/${item}`, { recursive: true });
+            }
+        }
+
+        // 2. Upload only these production deployment files to the GoDaddy backup vault
+        console.log("Uploading deployment files safely to backup vault...");
+        await client.uploadFromDir(stagingDir, backupDir);
+
+        // 3. Clean up the temporary staging directory on the GitHub runner
+        fs.rmSync(stagingDir, { recursive: true, force: true });
 
         console.log("Backup completed successfully!");
     } catch (err) {
