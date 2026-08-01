@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4.2.2 # Upgraded to resolve Node 20 warning
+        uses: actions/checkout@v4 # Upgraded to resolve Node 20 warning
 
       - name: Set up Node.js (For Backup Script)
-        uses: actions/setup-node@v4.2.0 # Upgraded to resolve Node 20 warning
+        uses: actions/setup-node@v4 # Upgraded to resolve Node 20 warning
         with:
           node-version: 24 # Switched to Node 24 to match runner native runtime
 
