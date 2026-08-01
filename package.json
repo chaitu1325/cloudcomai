@@ -1,7 +1,8 @@
 {
   "name": "html-godaddy-deploy",
   "type": "module",
-  "devDependencies": {
+  "dependencies": {
+    "archiver": "^7.0.1",
     "basic-ftp": "^5.0.5"
   }
 }
